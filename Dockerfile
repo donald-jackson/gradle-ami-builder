@@ -7,13 +7,15 @@ RUN curl -fL https://getcli.jfrog.io | sh && \
     mv jfrog /usr/local/bin && \
     chmod a+x /usr/local/bin/jfrog
 
-RUN wget https://releases.hashicorp.com/packer/1.2.1/packer_1.2.1_linux_amd64.zip && \
-    unzip packer_1.2.1_linux_amd64.zip && \
+ENV PACKER_VERSION=1.4.5
+
+RUN wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
+    unzip packer_${PACKER_VERSION}_linux_amd64.zip && \
     mv packer /usr/local/bin && \
     chmod a+x /usr/local/bin/packer
 
 
-ENV TERRAFORM_VERSION=0.11.7
+ENV TERRAFORM_VERSION=0.12.13
 
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip /tmp/terraform.zip
 RUN cd /usr/local/bin \
